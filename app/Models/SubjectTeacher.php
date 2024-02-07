@@ -5,23 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Classroom extends Model
+class SubjectTeacher extends Model
 {
     use HasFactory;
 
-
     /**
-     * Get all of the comments for the Classroom
+     * Get the subject that owns the SubjectTeacher
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function school_years(): BelongsTo
+    public function subject(): BelongsTo
     {
-        return $this->belongsTo(SchoolYear::class);
+        return $this->belongsTo(Subject::class);
     }
 
-    /**
-     * Get the subject that owns the Classroom
+       /**
+     * Get the subject that owns the SubjectTeacher
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -30,7 +29,7 @@ class Classroom extends Model
         return $this->belongsTo(Teacher::class);
     }
 
-        /**
+    /**
      * Get all of the teacherclassrooms for the SubjectTeacher
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -38,15 +37,5 @@ class Classroom extends Model
     public function teacherclassrooms(): HasMany
     {
         return $this->hasMany(TeacherClassroom::class);
-    }
-
-    /**
-     * Get all of the studentclassrooms for the Classroom
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function studentclassrooms(): HasMany
-    {
-        return $this->hasMany(StudentClassroom::class);
     }
 }

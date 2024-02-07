@@ -12,10 +12,10 @@ class SchoolYear extends Model
     /**
      * Get the user that owns the SchoolYear
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function classroom(): BelongsTo
+    public function classroom(): HasMany
     {
-        return $this->belongsTo(Classroom::class, 'foreign_key', 'other_key');
+        return $this->hasMany(Classroom::class);
     }
 }

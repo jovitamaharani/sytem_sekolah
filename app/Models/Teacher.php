@@ -12,10 +12,20 @@ class Teacher extends Model
     /**
      * Get the subject that owns the Teacher
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function subject(): BelongsTo
+    public function subjectTeachers(): HasMany
     {
-        return $this->belongsTo(Subject::class);
+        return $this->HasMany(SubjectTeacher::class);
+    }
+
+    /**
+     * Get the classroom associated with the Teacher
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function classroom(): HasOne
+    {
+        return $this->hasOne(Classroom::class);
     }
 }
